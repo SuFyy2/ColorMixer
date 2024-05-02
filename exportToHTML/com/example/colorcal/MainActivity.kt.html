@@ -1,0 +1,666 @@
+<html>
+<head>
+    <title>MainActivity.kt</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <style type="text/css">
+        .s0 { color: #cf8e6d;}
+        .s1 { color: #bcbec4;}
+        .s2 { color: #bcbec4;}
+        .s3 { color: #7a7e85;}
+        .s4 { color: #6aab73;}
+        .s5 { color: #2aacb8;}
+    </style>
+</head>
+<body bgcolor="#1e1f22">
+<table BGCOLOR="#606060" CELLPADDING=5 CELLSPACING=0 COLS=1 WIDTH="100%">
+    <tr>
+        <td>
+            <center>
+                <font color="#000000" face="Arial, Helvetica">
+                    MainActivity.kt</font>
+            </center>
+        </td>
+    </tr>
+</table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span
+        class="s1">example</span><span class="s2">.</span><span class="s1">colorcal</span>
+
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">content</span><span
+            class="s2">.</span><span class="s1">Context</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span
+            class="s2">.</span><span class="s1">Bundle</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">view</span><span
+            class="s2">.</span><span class="s1">Gravity</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">view</span><span
+            class="s2">.</span><span class="s1">LayoutInflater</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">view</span><span
+            class="s2">.</span><span class="s1">View</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span
+            class="s2">.</span><span class="s1">ImageView</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span
+            class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span
+            class="s2">.</span><span class="s1">AlertDialog</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span
+            class="s2">.</span><span class="s1">Button</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span
+            class="s2">.</span><span class="s1">ImageButton</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span
+            class="s2">.</span><span class="s1">PopupWindow</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span
+            class="s2">.</span><span class="s1">TextView</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span
+            class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span
+            class="s2">.</span><span class="s1">AppCompatActivity</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">core</span><span
+            class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span
+            class="s1">ContextCompat</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">core</span><span
+            class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span
+            class="s1">ViewCompat</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">core</span><span
+            class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span
+            class="s1">WindowInsetsCompat</span>
+
+<span class="s0">class </span><span class="s1">MainActivity : AppCompatActivity</span><span
+            class="s2">() {</span>
+
+    <span class="s1">private </span><span class="s0">var </span><span
+            class="s1">field1Color: Int? </span><span class="s2">= </span><span
+            class="s0">null</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span
+            class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState: Bundle?</span><span
+            class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span
+            class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">)</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span
+            class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span
+            class="s2">.</span><span class="s1">activity_main</span><span class="s2">)</span>
+
+        <span class="s0">val </span><span class="s1">infoButton </span><span
+            class="s2">= </span><span class="s1">findViewById</span><span
+            class="s2">&lt;</span><span class="s1">ImageView</span><span
+            class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span
+            class="s1">id</span><span class="s2">.</span><span class="s1">info</span><span
+            class="s2">)</span>
+        <span class="s1">infoButton</span><span class="s2">.</span><span class="s1">setOnClickListener </span><span
+            class="s2">{</span>
+            <span class="s1">showPopup</span><span class="s2">()</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">private </span><span class="s0">fun </span><span
+            class="s1">showPopup</span><span class="s2">() {</span>
+        <span class="s0">val </span><span class="s1">dialogView </span><span
+            class="s2">= </span><span class="s1">LayoutInflater</span><span class="s2">.</span><span
+            class="s1">from</span><span class="s2">(</span><span class="s0">this</span><span
+            class="s2">).</span><span class="s1">inflate</span><span class="s2">(</span><span
+            class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span
+            class="s2">.</span><span class="s1">popup_info</span><span class="s2">, </span><span
+            class="s0">null</span><span class="s2">)</span>
+        <span class="s0">val </span><span class="s1">dialog </span><span class="s2">= </span><span
+            class="s1">AlertDialog</span><span class="s2">.</span><span
+            class="s1">Builder</span><span class="s2">(</span><span class="s0">this</span><span
+            class="s2">)</span>
+            <span class="s2">.</span><span class="s1">setView</span><span class="s2">(</span><span
+            class="s1">dialogView</span><span class="s2">)</span>
+            <span class="s2">.</span><span class="s1">create</span><span class="s2">()</span>
+
+        <span class="s1">dialogView</span><span class="s2">.</span><span
+            class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">ImageView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">close</span><span
+            class="s2">).</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s1">dialog</span><span class="s2">.</span><span
+            class="s1">dismiss</span><span class="s2">()</span>
+        <span class="s2">}</span>
+
+        <span class="s1">dialog</span><span class="s2">.</span><span class="s1">show</span><span
+            class="s2">()</span>
+    <span class="s2">}</span>
+
+    <span class="s0">fun </span><span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">view: View</span><span class="s2">) {</span>
+        <span class="s0">val </span><span class="s1">colorResId </span><span
+            class="s2">= </span><span class="s0">when </span><span class="s2">(</span><span
+            class="s1">view</span><span class="s2">.</span><span class="s1">id</span><span
+            class="s2">) {</span>
+            <span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span
+            class="s2">.</span><span class="s1">red </span><span class="s2">-&gt; </span><span
+            class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">red</span>
+            <span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span
+            class="s2">.</span><span class="s1">orange </span><span class="s2">-&gt; </span><span
+            class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">orange</span>
+            <span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span
+            class="s2">.</span><span class="s1">green </span><span class="s2">-&gt; </span><span
+            class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">green</span>
+            <span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span
+            class="s2">.</span><span class="s1">yellow </span><span class="s2">-&gt; </span><span
+            class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">yelllow</span>
+            <span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span
+            class="s2">.</span><span class="s1">white </span><span class="s2">-&gt; </span><span
+            class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">white</span>
+            <span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span
+            class="s2">.</span><span class="s1">blue </span><span class="s2">-&gt; </span><span
+            class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">blue</span>
+            <span class="s0">else </span><span class="s2">-&gt; </span><span
+            class="s0">return</span>
+        <span class="s2">}</span>
+
+        <span class="s0">val </span><span class="s1">field1 </span><span class="s2">= </span><span
+            class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">field1</span><span
+            class="s2">)</span>
+        <span class="s0">val </span><span class="s1">field2 </span><span class="s2">= </span><span
+            class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">field2</span><span
+            class="s2">)</span>
+        <span class="s0">val </span><span class="s1">field3 </span><span class="s2">= </span><span
+            class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">field3</span><span
+            class="s2">)</span>
+
+        <span class="s0">if </span><span class="s2">(</span><span
+            class="s1">field1Color </span><span class="s2">== </span><span
+            class="s0">null</span><span class="s2">) {</span>
+            <span class="s3">// Set the color for field1</span>
+            <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field1</span><span class="s2">, </span><span
+            class="s1">colorResId</span><span class="s2">)</span>
+            <span class="s1">field1Color </span><span class="s2">= </span><span class="s1">colorResId</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s3">// Set the color for field2</span>
+            <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field2</span><span class="s2">, </span><span
+            class="s1">colorResId</span><span class="s2">)</span>
+
+            <span class="s3">// Check if field1 is red and field2 is blue</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">red </span><span class="s2">&amp;&amp; </span><span
+            class="s1">colorResId </span><span class="s2">== </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">blue</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">violet</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">red </span><span class="s2">&amp;&amp; </span><span
+            class="s1">colorResId </span><span class="s2">== </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">green</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">yelllow</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">red </span><span class="s2">&amp;&amp; </span><span
+            class="s1">colorResId </span><span class="s2">== </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">orange</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">dark_orange</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">red </span><span class="s2">&amp;&amp; </span><span
+            class="s1">colorResId </span><span class="s2">== </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">yelllow</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">orange</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">red </span><span class="s2">&amp;&amp; </span><span
+            class="s1">colorResId </span><span class="s2">== </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">white</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">pink</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">blue </span><span class="s2">&amp;&amp; </span><span
+            class="s1">colorResId </span><span class="s2">== </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">red</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">violet</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">blue </span><span class="s2">&amp;&amp; </span><span
+            class="s1">colorResId </span><span class="s2">== </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">green</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">cyan</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">blue </span><span class="s2">&amp;&amp; </span><span
+            class="s1">colorResId </span><span class="s2">== </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">orange</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">brown</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">blue </span><span class="s2">&amp;&amp; </span><span
+            class="s1">colorResId </span><span class="s2">== </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">yelllow</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">green</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">blue </span><span class="s2">&amp;&amp; </span><span
+            class="s1">colorResId </span><span class="s2">== </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">white</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">light_blue</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">green </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">red</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">brown1</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">green </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">blue</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">cyan</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">green </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">orange</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">olive</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">green </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">yelllow</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">lime</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">green </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">white</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">lime</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">orange </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">red</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">dark_orange</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">orange </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">blue</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">brown</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">orange </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">green</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">brown2</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">orange </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">yelllow</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">yellow_orange</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">orange </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">white</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">yellow_orange</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">yelllow </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">red</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">orange</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">yelllow </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">blue</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">green</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">yelllow </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">green</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">lime</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">yelllow </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">orange</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">yellow_orange</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">yelllow </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">white</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">light_yellow</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">white </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">red</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">pink</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">white </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">blue</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">light_blue</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">white </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">green</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">light_green</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">white </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">orange</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">light_orange</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">field1Color </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">white </span><span
+            class="s2">&amp;&amp; </span><span class="s1">colorResId </span><span
+            class="s2">== </span><span class="s1">R</span><span class="s2">.</span><span class="s1">color</span><span
+            class="s2">.</span><span class="s1">yelllow</span><span class="s2">) {</span>
+                <span class="s3">// Change the color of field3 to violet</span>
+                <span class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">field3</span><span class="s2">, </span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">color</span><span class="s2">.</span><span
+            class="s1">light_yellow</span><span class="s2">)</span>
+            <span class="s2">}</span>
+
+            <span class="s1">field1Color </span><span class="s2">= </span><span
+            class="s0">null </span><span class="s3">// Reset the color for field1 after setting field2</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s1">private </span><span class="s0">fun </span><span
+            class="s1">setColor</span><span class="s2">(</span><span
+            class="s1">view: TextView</span><span class="s2">, </span><span class="s1">colorResId: Int</span><span
+            class="s2">) {</span>
+        <span class="s1">view</span><span class="s2">.</span><span
+            class="s1">setBackgroundResource</span><span class="s2">(</span><span class="s1">colorResId</span><span
+            class="s2">)</span>
+        <span class="s0">val </span><span class="s1">hexColor </span><span class="s2">= </span><span
+            class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span
+            class="s2">(</span><span class="s4">&quot;#%06X&quot;</span><span
+            class="s2">, </span><span class="s1">ContextCompat</span><span class="s2">.</span><span
+            class="s1">getColor</span><span class="s2">(</span><span class="s0">this</span><span
+            class="s2">, </span><span class="s1">colorResId</span><span class="s2">) </span><span
+            class="s1">and </span><span class="s5">0xFFFFFF</span><span class="s2">)</span>
+        <span class="s0">when </span><span class="s2">(</span><span class="s1">view</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">) {</span>
+            <span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span
+            class="s2">.</span><span class="s1">field1 </span><span class="s2">-&gt; </span><span
+            class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">rgb1</span><span
+            class="s2">).</span><span class="s1">text </span><span class="s2">= </span><span
+            class="s1">hexColor</span>
+            <span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span
+            class="s2">.</span><span class="s1">field2 </span><span class="s2">-&gt; </span><span
+            class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">rgb2</span><span
+            class="s2">).</span><span class="s1">text </span><span class="s2">= </span><span
+            class="s1">hexColor</span>
+            <span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span
+            class="s2">.</span><span class="s1">field3 </span><span class="s2">-&gt; </span><span
+            class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">rgb3</span><span
+            class="s2">).</span><span class="s1">text </span><span class="s2">= </span><span
+            class="s1">hexColor</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+
+    <span class="s0">fun </span><span class="s1">clearButton</span><span class="s2">(</span><span
+            class="s1">view: View</span><span class="s2">) {</span>
+        <span class="s3">// Set the background of field1, field2, and field3 to custom shape XML file</span>
+        <span class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">field1</span><span
+            class="s2">).</span><span class="s1">setBackgroundResource</span><span
+            class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span
+            class="s2">.</span><span class="s1">custom_shapes</span><span class="s2">)</span>
+        <span class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">field2</span><span
+            class="s2">).</span><span class="s1">setBackgroundResource</span><span
+            class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span
+            class="s2">.</span><span class="s1">custom_shapes</span><span class="s2">)</span>
+        <span class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">field3</span><span
+            class="s2">).</span><span class="s1">setBackgroundResource</span><span
+            class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">drawable</span><span
+            class="s2">.</span><span class="s1">custom_shapes</span><span class="s2">)</span>
+
+        <span class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">rgb1</span><span
+            class="s2">).</span><span class="s1">text </span><span class="s2">= </span><span
+            class="s4">&quot;&quot;</span>
+        <span class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">rgb2</span><span
+            class="s2">).</span><span class="s1">text </span><span class="s2">= </span><span
+            class="s4">&quot;&quot;</span>
+        <span class="s1">findViewById</span><span class="s2">&lt;</span><span
+            class="s1">TextView</span><span class="s2">&gt;(</span><span class="s1">R</span><span
+            class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">rgb3</span><span
+            class="s2">).</span><span class="s1">text </span><span class="s2">= </span><span
+            class="s4">&quot;&quot;</span>
+    <span class="s2">}</span>
+
+<span class="s2">}</span>
+
+</pre>
+</body>
+</html>
